@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
-    team_id:{
-        type: String,
-        required: true,
-        unique: true
-    },
     team_name:{
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -19,7 +18,7 @@ const teamSchema = new mongoose.Schema({
         required: true,
         enum:['growing','established']
     },
-    total_points:{
+    score:{
         type: Number,
         required: true,
         default:0

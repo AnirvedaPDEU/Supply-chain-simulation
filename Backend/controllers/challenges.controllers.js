@@ -7,7 +7,7 @@ const createChallenge = async (req, res) => {
         const savedChallenge = await challenge.save();
         res.status(201).json(savedChallenge);
     } catch (error) {
-        console.error('Error creating challenge:', error); // Log the error for debugging
+        console.error('Error creating challenge:', error); 
         if (error.name === 'ValidationError') {
             return res.status(400).json({ message: 'Validation error', details: error.errors });
         }

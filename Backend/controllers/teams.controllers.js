@@ -1,16 +1,64 @@
 const TeamSchema = require('../models/teams.model');
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 // Create a Team
-const createTeam = async (req, res) => {
-    const team = new TeamSchema(req.body);
+const registerTeam = async (req, res) => {
+    const { team_name, password, team_members, category } = req.body;
+
+    // Check if the team already exists (case-insensitive)
+    const existingTeam = await TeamSchema.findOne({ team_name: team_name.toLowerCase() });
+    if (existingTeam) {
+        return res.status(400).json({ message: 'Team name already exists' });
+    }
+
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const team = new TeamSchema({
+        team_name: team_name.toLowerCase(), // Store team name in lowercase
+        password: hashedPassword,
+        team_members,
+        category,
+    });
+
     try {
         const savedTeam = await team.save();
         res.status(201).json(savedTeam);
     } catch (error) {
-        console.error('Error creating team:', error); // Log the error for debugging
+        console.error('Error registering team:', error);
         if (error.name === 'ValidationError') {
             return res.status(400).json({ message: 'Validation error', details: error.errors });
         }
+        res.status(500).json({ message: 'Internal server error', details: error.message });
+    }
+};
+
+const loginTeam = async (req, res) => {
+    const { team_name, password } = req.body;
+
+    try {
+        const team = await TeamSchema.findOne({ team_name: team_name.toLowerCase() });
+        if (!team) {
+            return res.status(404).json({ message: 'Team not found' });
+        }
+
+        // Compare the provided password with the hashed password
+        const isMatch = await bcrypt.compare(password, team.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        // Generate a JWT token
+        const token = jwt.sign(
+            { teamId: team._id, team_name: team.team_name }, 
+            process.env.SECRET_KEY, 
+            { expiresIn: '2d' } // Token expiration time
+        );
+
+        res.status(200).json({ message: 'Login successful', token, teamId: team._id });
+    } catch (error) {
+        console.error('Error logging in team:', error);
         res.status(500).json({ message: 'Internal server error', details: error.message });
     }
 };
@@ -78,7 +126,8 @@ const deleteTeam = async (req, res) => {
 };
 
 module.exports = {
-    createTeam,
+    registerTeam,
+    loginTeam,
     getAllTeamSchema,
     getTeamById,
     updateTeam,

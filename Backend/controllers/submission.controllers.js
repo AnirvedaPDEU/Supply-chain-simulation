@@ -1,4 +1,7 @@
 const SubmissionSchema = require('../models/submissions.model');
+const challengeSchema = require('../models/challenges.model');
+const teamSchema = require('../models/teams.model');
+
 
 // Create a Submission
 const createSubmission = async (req, res) => {
@@ -71,19 +74,55 @@ const deleteSubmission = async (req, res) => {
     }
 };
 
-const evaluateScore = async(req,res)=>{
-    try{
+const evaluateScore = async (req, res) => {
+    const { teamId, challengeId, selectedOption } = req.body; 
 
-    }catch(error){
-        console.error('Error evaluating score:', error); // Log the error for debugging
+    try {
+        // Find the Challenge
+        const challenge = await challengeSchema.findById(challengeId);
+        if (!challenge) return res.status(404).json({ message: 'Challenge not found' });
+
+        // Find the selected option in the challenge options
+        const option = challenge.options.find(opt => opt.option_text === selectedOption);
+        if (!option) return res.status(404).json({ message: 'Selected option not found in challenge' });
+
+        // Find the Team and its category
+        const team = await teamSchema.findById(teamId);
+        if (!team) return res.status(404).json({ message: 'Team not found' });
+
+        const category = team.category; // Assuming `category` is a field in the Team schema
+
+        // Get the score for the specified category
+        const pointsAwarded = option.scores[category];
+        const feedback = option.feedback[category];
+
+        if (pointsAwarded === undefined) return res.status(400).json({ message: 'Invalid category' });
+
+        // Update the Team's score
+        team.score += pointsAwarded;
+        await team.save();
+
+        const submission = new SubmissionSchema({
+            team_id:teamId,
+            challenge_id:challengeId,
+            selected_option:selectedOption,
+            score:pointsAwarded
+        });
+        await submission.save();
+
+        res.status(201).json({ message: 'Score evaluated and team updated', pointsAwarded, feedback });
+    } catch (error) {
+        console.error('Error evaluating score:', error);
         res.status(500).json({ message: 'Internal server error', details: error.message });
     }
-}
+};
+
 
 module.exports = {
     createSubmission,
     getAllSubmissions,
     getSubmissionById,
     updateSubmission,
-    deleteSubmission
+    deleteSubmission,
+    evaluateScore
 }
