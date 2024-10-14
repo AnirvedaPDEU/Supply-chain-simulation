@@ -1,0 +1,51 @@
+/* src/components/TeamRegistration.css */
+.registration-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    max-width: 400px;
+  }
+  
+  .registration-container h2 {
+    text-align: center;
+    color: #007bff;
+  }
+  
+  .registration-container label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  .registration-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  .registration-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+  }
+  
+  .registration-container button {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .registration-container button:hover {
+    background-color: #0056b3;
+  }
+  

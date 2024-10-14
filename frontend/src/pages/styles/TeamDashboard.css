@@ -1,0 +1,52 @@
+/* src/styles/TeamDashboard.css */
+.team-dashboard {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.team-dashboard h1 {
+    text-align: center;
+    color: #333;
+}
+
+.team-dashboard h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.team-dashboard h3 {
+    color: #2980b9;
+}
+
+.team-dashboard ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-dashboard li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.team-dashboard button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.team-dashboard button:hover {
+    background-color: #3498db;
+}

@@ -1,0 +1,22 @@
+.option {
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.selected {
+  background-color: #d1e7dd; /* Light green background for selected option */
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #0d6efd; /* Primary button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
