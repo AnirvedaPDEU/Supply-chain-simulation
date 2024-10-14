@@ -15,9 +15,9 @@ const submissionSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      points_awarded: {
+      score: {
         type: Number
-      },
+      }
 },{timestamps:true})
 
 module.exports = mongoose.model('Submissions',submissionSchema)

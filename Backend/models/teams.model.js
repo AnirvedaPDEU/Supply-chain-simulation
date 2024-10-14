@@ -11,8 +11,8 @@ const teamSchema = new mongoose.Schema({
         required: true
     },
     team_members:{
-            type: Array,
-            required: true
+        type: [String],
+        required: true
     },
     category:{
         type: String,
