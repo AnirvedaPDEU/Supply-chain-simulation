@@ -75,10 +75,12 @@ const deleteSubmission = async (req, res) => {
 };
 
 const evaluateScore = async (req, res) => {
-    const { teamId, challengeId, selectedOption } = req.body; 
-
+    const { teamId, challengeId, selectedOption, startTime } = req.body;
+    
     try {
         // Find the Challenge
+        console.log(startTime)
+
         const challenge = await challengeSchema.findById(challengeId);
         if (!challenge) return res.status(404).json({ message: 'Challenge not found' });
 
@@ -100,23 +102,34 @@ const evaluateScore = async (req, res) => {
 
         // Update the Team's score
         team.score += pointsAwarded;
-        await team.save();
 
+        // Calculate the time taken for this challenge
+        const endTime = Date.now(); // Record the end time on the server
+        const timeElapsed = Math.floor((endTime - startTime) / 1000); // Time in seconds
+
+        // Update the time_taken field based on your schema (using cumulative or per-question tracking)
+        team.time_taken += timeElapsed; 
+        
+        // Save the updated team document
+        await team.save();
+        const total_score = team.score;
+
+        // Save the submission details
         const submission = new SubmissionSchema({
-            team_id:teamId,
-            challenge_id:challengeId,
-            selected_option:selectedOption,
-            score:pointsAwarded
+            team_id: teamId,
+            challenge_id: challengeId,
+            selected_option: selectedOption,
+            score: pointsAwarded,
+            time_taken: timeElapsed // Store individual time taken in the submission if needed
         });
         await submission.save();
 
-        res.status(201).json({ message: 'Score evaluated and team updated', pointsAwarded, feedback });
+        res.status(201).json({ message: 'Score evaluated and team updated', pointsAwarded, feedback, total_score, timeElapsed });
     } catch (error) {
         console.error('Error evaluating score:', error);
         res.status(500).json({ message: 'Internal server error', details: error.message });
     }
 };
-
 
 module.exports = {
     createSubmission,

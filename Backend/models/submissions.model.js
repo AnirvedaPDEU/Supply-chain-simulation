@@ -17,6 +17,9 @@ const submissionSchema = new mongoose.Schema({
       },
       score: {
         type: Number
+      },
+      time_taken:{
+        type:Number
       }
 },{timestamps:true})
 
