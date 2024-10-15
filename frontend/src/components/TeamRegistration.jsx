@@ -1,7 +1,6 @@
-// src/components/TeamRegistration.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './TeamRegistration.css';
 
 const TeamRegistration = () => {
@@ -10,7 +9,7 @@ const TeamRegistration = () => {
   const [teamMembers, setTeamMembers] = useState(['']);
   const [category, setCategory] = useState('growing'); 
   const [score, setScore] = useState(0); 
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,14 +24,12 @@ const TeamRegistration = () => {
       });
       console.log('Team registered:', response.data);
 
-      // Reset the form after successful registration
       setTeamName('');
       setPassword('');
       setTeamMembers(['']);
       setCategory('growing');
       setScore(0);
 
-      // Navigate to the login page
       navigate('/login');
     } catch (error) {
       console.error('Error registering team:', error.message);
@@ -51,7 +48,6 @@ const TeamRegistration = () => {
 
   return (
     <div className="registration-container">
-      <h2>Register Your Team</h2>
       <form onSubmit={handleSubmit}>
         <label>Team Name:</label>
         <input
@@ -80,7 +76,7 @@ const TeamRegistration = () => {
             required
           />
         ))}
-        <button type="button" onClick={addMember}>
+        <button type="button" onClick={addMember} className="add-member-button">
           Add Member
         </button>
         
@@ -90,8 +86,10 @@ const TeamRegistration = () => {
           <option value="established">Established</option>
         </select>
 
-        <button type="submit">Register Team</button>
+        <button type="submit" className="submit-button">Register Team</button>
       </form>
+
+      <p className="login-link">Already registered? <Link to="/login">Go to Login</Link></p>
     </div>
   );
 };
