@@ -1,103 +1,119 @@
-/* Center the login container */
+/* src/styles/Login.css */
+body {
+  background: #0d0d0d; /* Dark background */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
 .login-container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #f3f4f6;
-}
-
-/* Styling for the login box */
-.login-box {
-  width: 100%;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.3); /* Golden glow */
   max-width: 400px;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
   text-align: center;
+  position: relative;
+  z-index: 1; /* Ensure form stays on top */
 }
 
-/* Heading styling */
-.login-box h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+h2 {
+  color: #f7c04a; /* Rich gold color */
+  margin-bottom: 20px;
+  font-size: 1.7em;
 }
 
-/* Form styling */
-.login-box form {
+form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-/* Label styling */
-.login-box label {
-  text-align: left;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 600;
+label {
+  color: #ffffff;
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-size: 0.9em;
 }
 
-/* Input field styling */
-.login-box input {
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-  color: #333;
-}
-
-.login-box input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
-}
-
-/* Button styling */
-.login-box button {
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: #fff;
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1em;
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+input::placeholder {
+  color: #aaaaaa; /* Light placeholder color */
+}
+
+button {
+  background-color: #f7c04a;
+  color: #0d0d0d; /* Dark text for contrast */
+  padding: 12px 25px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.login-box button:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: #dda832; /* Lighter gold */
+  transform: scale(1.05); /* Gentle zoom on hover */
 }
 
-/* Register link styling */
 .register-link {
-  margin-top: 1rem;
+  margin-top: 20px;
 }
 
 .register-link p {
-  font-size: 0.9rem;
-  color: #555;
+  color: #ffffff;
+  font-size: 0.9em;
 }
 
 .register-link a {
-  color: #007bff;
+  color: #f7c04a; /* Gold color for links */
   text-decoration: none;
-  font-weight: 600;
 }
 
 .register-link a:hover {
   text-decoration: underline;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .login-box {
-    padding: 1.5rem;
-  }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
 
-  .login-box h2 {
-    font-size: 1.75rem;
-  }
+.currency {
+  position: fixed; /* Fixed position relative to the window */
+  font-size: 1.5em;
+  color: rgba(255, 215, 0, 0.3); /* Light golden color for currency symbols */
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  z-index: 0; /* Ensure floating symbols stay behind the login form */
+}
+
+.currency:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
 }

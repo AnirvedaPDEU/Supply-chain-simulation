@@ -37,7 +37,7 @@ const Home = () => {
       <button className="register-button" onClick={handleRegisterClick}>
         Register Now
       </button>
-      <h2>Game Guidelines</h2>
+      <h2 className="main-heading">Game Guidelines</h2>
       <ul className="guidelines">
         <li>Each team must register with a unique name.</li>
         <li>Teams can have up to 5 members.</li>

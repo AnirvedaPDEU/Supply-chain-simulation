@@ -4,6 +4,27 @@ import { useNavigate, Link } from 'react-router-dom';
 import './styles/Login.css';
 import { useAuth } from '../context/AuthContext';
 
+// Array of currency symbols for dynamic floating elements
+const currencies = ['$', '€', '₹', '¥', '£', '₩'];
+
+// Create multiple copies of each currency symbol
+const floatingCurrencies = Array.from({ length: 50 }, (_, index) => {
+  const randomCurrency = currencies[Math.floor(Math.random() * currencies.length)];
+  return (
+    <span
+      key={index}
+      className="currency"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDuration: `${4 + Math.random() * 4}s`,
+      }}
+    >
+      {randomCurrency}
+    </span>
+  );
+});
+
 const Login = () => {
   const { setAuthData } = useAuth();
   const [teamName, setTeamName] = useState('');
@@ -55,7 +76,9 @@ const Login = () => {
           <p>Don't have an account? <Link to="/register">Register here</Link></p>
         </div>
       </div>
+      {floatingCurrencies}
     </div>
+    
   );
 };
 
