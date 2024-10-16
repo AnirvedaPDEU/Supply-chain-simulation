@@ -81,3 +81,11 @@ button[type="submit"]:disabled {
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.discussion-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #ff0000; /* Change color as needed */
+  font-weight: bold;
+}
+

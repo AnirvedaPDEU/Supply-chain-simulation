@@ -23,6 +23,7 @@ const Challenges = () => {
   const [totalScore, setTotalScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [timer, setTimer] = useState(30); // Timer state for countdown
   const [startTime, setStartTime] = useState(null); 
   const [timeTaken, setTimeTaken] = useState(null);
 
@@ -32,7 +33,7 @@ const Challenges = () => {
         const response = await axios.get('http://localhost:4000/api/challenge/');
         setChallenges(response.data);
         if (response.data.length > 0) {
-          initializeChallenge();  // Set start time for the first challenge
+          initializeChallenge();  // Initialize the first challenge
         }
       } catch (error) {
         console.error('Error fetching challenges:', error);
@@ -48,8 +49,8 @@ const Challenges = () => {
     setPointsAwarded(null);
     setFeedback('');
     setTimeTaken(null); 
-    setStartTime(Date.now()); // Correctly set the start time when challenge is initialized
-    console.log(startTime)
+    setStartTime(Date.now()); // Set start time for the challenge
+    setTimer(30); // Reset timer for the new challenge
   };
 
   useEffect(() => {
@@ -64,11 +65,25 @@ const Challenges = () => {
           initializeChallenge(); // Re-initialize for the new challenge
           return newIndex;
         }
-      });
-    }, 6000);
+      }, 30000);
+
+      return () => clearInterval(interval);
+    }, 30000); // Change the challenge every 30 seconds
 
     return () => clearInterval(interval);
   }, [challenges.length]);
+
+  useEffect(() => {
+    if (timer === 0) {
+      handleSubmit(new Event('submit')); // Automatically submit if timer reaches 0
+    }
+
+    const countdown = setInterval(() => {
+      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(countdown);
+  }, [timer]);
 
   if (challenges.length === 0) {
     return <div>Loading challenges...</div>;
@@ -103,11 +118,10 @@ const Challenges = () => {
           },
         }
       );
-      console.log(evaluateResponse.data)
       setPointsAwarded(evaluateResponse.data.pointsAwarded);
       setFeedback(evaluateResponse.data.feedback);
       setTotalScore(evaluateResponse.data.total_score);
-      setTimeTaken(evaluateResponse.data.timeElapsed); // Capture time taken from backend
+      setTimeTaken(evaluateResponse.data.timeElapsed);
       setIsSubmitted(true);
       
       setQuestionsAnswered((prevCount) => prevCount + 1);
@@ -126,6 +140,7 @@ const Challenges = () => {
           <h2>Current Challenge</h2>
           <div className="challenge">
             <h3>{currentChallenge.question_text}</h3>
+            <div className="timer">Time Left: {timer} seconds</div> 
             <form onSubmit={handleSubmit}>
               <div>
                 {currentChallenge.options.map((option, index) => (
