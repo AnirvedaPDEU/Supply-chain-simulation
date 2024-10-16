@@ -1,37 +1,83 @@
-/* src/pages/Home.css */
+body {
+  background: #0d0d0d; /* Dark background */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Stylish, modern font */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
 .home-container {
-    text-align: center;
-    margin: 50px auto;
-    padding: 20px;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    max-width: 600px;
-  }
-  
-  .home-title {
-    color: #007bff;
-  }
-  
-  .register-button {
-    padding: 10px 20px;
-    font-size: 1.2em;
-    color: white;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 20px 0;
-  }
-  
-  .register-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .guidelines {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-    color: #333;
-  }
-  
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.3); /* Golden glow */
+}
+
+.home-title, .main-heading {
+  color: #f7c04a; /* Rich gold color */
+  margin: 0;
+  padding: 10px 0;
+}
+
+.register-button {
+  background-color: #f7c04a;
+  color: #0d0d0d; /* Dark text for contrast */
+  padding: 12px 25px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px;
+}
+
+.register-button:hover {
+  background-color: #dda832; /* Lighter gold */
+  transform: scale(1.05); /* Gentle zoom on hover */
+}
+
+.guidelines {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  color: #ffffff; /* White text */
+  margin-top: 20px;
+}
+
+.guidelines li {
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.guidelines li:hover {
+  background: #333;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.currency {
+  position: absolute;
+  font-size: 1.5em;
+  color: rgba(255, 215, 0, 0.3); /* Light golden color for currency symbols */
+  animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.currency:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
