@@ -2,6 +2,27 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles/Leaderboard.css';
 
+// Array of currency symbols for dynamic floating elements
+const currencies = ['$', '€', '₹', '¥', '£', '₩'];
+
+// Create multiple copies of each currency symbol
+const floatingCurrencies = Array.from({ length: 50 }, (_, index) => {
+  const randomCurrency = currencies[Math.floor(Math.random() * currencies.length)];
+  return (
+    <span
+      key={index}
+      className="currency"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDuration: `${4 + Math.random() * 4}s`,
+      }}
+    >
+      {randomCurrency}
+    </span>
+  );
+});
+
 const Leaderboard = () => {
   const [leaderboard, setLeaderboard] = useState([]);
 
@@ -18,6 +39,12 @@ const Leaderboard = () => {
     fetchLeaderboard();
   }, []);
 
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
+
   return (
     <div className="leaderboard-container">
       <h2>Leaderboard</h2>
@@ -27,7 +54,7 @@ const Leaderboard = () => {
             <th>Rank</th>
             <th>Team Name</th>
             <th>Total Score</th>
-            <th>Total time taken</th>
+            <th>Total Time Taken</th>
           </tr>
         </thead>
         <tbody>
@@ -36,11 +63,12 @@ const Leaderboard = () => {
               <td>{index + 1}</td>
               <td>{team.teamName}</td>
               <td>{team.totalScore}</td>
-              <td>{team.totalTime}</td>
+              <td>{formatTime(team.totalTime)}</td> {/* Format time here */}
             </tr>
           ))}
         </tbody>
       </table>
+      {floatingCurrencies} {/* Add floating currencies here */}
     </div>
   );
 };

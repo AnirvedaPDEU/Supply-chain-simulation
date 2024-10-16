@@ -86,7 +86,7 @@ const TeamRegistration = () => {
           <option value="established">Established</option>
         </select>
 
-        <button type="submit" className="submit-button">Register Team</button>
+        <button type="submit" className="submit-button" style={{background:"#f7c04a"}}>Register Team</button>
       </form>
 
       <p className="login-link">Already registered? <Link to="/login">Go to Login</Link></p>

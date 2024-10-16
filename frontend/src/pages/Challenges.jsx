@@ -3,6 +3,26 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import './styles/Challenges.css';
 
+const currencies = ['$', '€', '₹', '¥', '£', '₩'];
+
+// Create multiple copies of each currency symbol
+const floatingCurrencies = Array.from({ length: 50 }, (_, index) => {
+  const randomCurrency = currencies[Math.floor(Math.random() * currencies.length)];
+  return (
+    <span
+      key={index}
+      className="currency"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDuration: `${4 + Math.random() * 4}s`,
+      }}
+    >
+      {randomCurrency}
+    </span>
+  );
+});
+
 const FinalScore = ({ totalScore, questionsAnswered }) => (
   <div className="final-score">
     <h2>Congratulations!</h2>
@@ -23,7 +43,7 @@ const Challenges = () => {
   const [totalScore, setTotalScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
-  const [timer, setTimer] = useState(30); // Timer state for countdown
+  const [timer, setTimer] = useState(480); // Timer state for countdown
   const [startTime, setStartTime] = useState(null); 
   const [timeTaken, setTimeTaken] = useState(null);
 
@@ -50,7 +70,13 @@ const Challenges = () => {
     setFeedback('');
     setTimeTaken(null); 
     setStartTime(Date.now()); // Set start time for the challenge
-    setTimer(30); // Reset timer for the new challenge
+    setTimer(480); // Reset timer for the new challenge
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
   useEffect(() => {
@@ -65,10 +91,10 @@ const Challenges = () => {
           initializeChallenge(); // Re-initialize for the new challenge
           return newIndex;
         }
-      }, 30000);
+      }, 480000);
 
       return () => clearInterval(interval);
-    }, 30000); // Change the challenge every 30 seconds
+    }, 480000); // Change the challenge every 30 seconds
 
     return () => clearInterval(interval);
   }, [challenges.length]);
@@ -140,7 +166,7 @@ const Challenges = () => {
           <h2>Current Challenge</h2>
           <div className="challenge">
             <h3>{currentChallenge.question_text}</h3>
-            <div className="timer">Time Left: {timer} seconds</div> 
+            <div className="timer">Time Left: {formatTime(timer)}</div> 
             <form onSubmit={handleSubmit}>
               <div>
                 {currentChallenge.options.map((option, index) => (
@@ -173,6 +199,7 @@ const Challenges = () => {
           </div>
         </>
       )}
+      {floatingCurrencies}
     </div>
   );
 };

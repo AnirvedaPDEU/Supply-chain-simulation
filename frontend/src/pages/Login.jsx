@@ -70,7 +70,7 @@ const Login = () => {
             required
           />
           
-          <button type="submit">Login</button>
+          <button type="submit" style={{background:"#f7c04a"}}>Login</button>
         </form>
         <div className="register-link">
           <p>Don't have an account? <Link to="/register">Register here</Link></p>

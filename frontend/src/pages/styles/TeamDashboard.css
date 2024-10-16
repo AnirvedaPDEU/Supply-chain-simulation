@@ -1,75 +1,72 @@
 .team-dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 2rem auto;
-    max-width: 600px;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
-  }
-  
-  .team-dashboard h1 {
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-  }
-  
-  .team-dashboard h2 {
-    font-size: 2rem;
-    margin: 1rem 0;
-  }
-  
-  .team-dashboard h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    color: #555;
-  }
-  
-  .team-dashboard ul {
-    list-style-type: none; /* Removes default list styling */
-    padding: 0;
-    margin: 1rem 0;
-  }
-  
-  .team-dashboard li {
-    background-color: #e7f1ff; /* Light background for members */
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s; /* Animation effect on hover */
-  }
-  
-  .team-dashboard li:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
-  }
-  
-  .team-dashboard button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .team-dashboard button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-  }
-  
-  .team-dashboard h2, 
-  .team-dashboard h3 {
-    text-align: center; /* Center align headings for better aesthetics */
-  }
-  
-  .team-dashboard h2 {
-    border-bottom: 2px solid #007bff; /* Underline for the team name */
-    padding-bottom: 0.5rem;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(255, 215, 0, 0.3); /* Golden glow */
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  color: #f7c04a; /* Rich gold color */
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+h2, h3 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+li {
+  color: #dddddd;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #f7c04a;
+  color: #0d0d0d;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #dda832;
+  transform: scale(1.05);
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.currency {
+  position: fixed;
+  font-size: 1.5em;
+  color: rgba(255, 215, 0, 0.3);
+  animation: float 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.currency:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
