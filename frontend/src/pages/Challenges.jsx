@@ -43,7 +43,7 @@ const Challenges = () => {
   const [totalScore, setTotalScore] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
-  const [timer, setTimer] = useState(480); // Timer state for countdown
+  const [timer, setTimer] = useState(360); // Timer state for countdown
   const [startTime, setStartTime] = useState(null); 
   const [timeTaken, setTimeTaken] = useState(null);
 
@@ -70,7 +70,7 @@ const Challenges = () => {
     setFeedback('');
     setTimeTaken(null); 
     setStartTime(Date.now()); // Set start time for the challenge
-    setTimer(480); // Reset timer for the new challenge
+    setTimer(360); // Reset timer for the new challenge
   };
 
   const formatTime = (seconds) => {
@@ -91,10 +91,10 @@ const Challenges = () => {
           initializeChallenge(); // Re-initialize for the new challenge
           return newIndex;
         }
-      }, 480000);
+      }, 360000);
 
       return () => clearInterval(interval);
-    }, 480000); // Change the challenge every 30 seconds
+    }, 360000); // Change the challenge every 30 seconds
 
     return () => clearInterval(interval);
   }, [challenges.length]);

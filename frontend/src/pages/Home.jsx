@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <h1 className="main-heading">ANIRVEDA</h1>
-      <h2 className="home-title">Get! Get! Supply!!!</h2>
+      <h2 className="home-title">Get! Set! Supply!!!</h2>
       <button className="register-button" onClick={handleRegisterClick}>
         Register Now
       </button>
@@ -46,10 +46,10 @@ const Home = () => {
         <li> Refrain from using any online AI tools or switching tabs during the simulation.</li>
         <li>The leaderboard will be updated after each challenge.</li>
         <li> Choose a simple password for ease of access; we will not have access to recover it if forgotten.</li>
-        <li> Each question will be displayed for 8 minutes:
+        <li> Each question will be displayed for 6 minutes:
         <ul>
             <li>Hosts will explain the question for 2 minutes.</li>
-            <li>Teams will have 6 minutes to discuss and formulate their answers.</li>
+            <li>Teams will have 4 minutes to discuss and formulate their answers.</li>
         </ul>
         </li>
         <li> Consider your solutions based on your assigned category: either <em>Growing</em> or <em>Established</em>.</li>
