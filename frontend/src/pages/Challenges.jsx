@@ -50,7 +50,7 @@ const Challenges = () => {
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/challenge/');
+        const response = await axios.get('https://supply-chain-simulation-server.vercel.app/api/challenge/');
         setChallenges(response.data);
         if (response.data.length > 0) {
           initializeChallenge();  // Initialize the first challenge
@@ -131,7 +131,7 @@ const Challenges = () => {
 
     try {
       const evaluateResponse = await axios.post(
-        'http://localhost:4000/api/submit/submission', 
+        'https://supply-chain-simulation-server.vercel.app/api/submit/submission', 
         {
           teamId: authData.teamId,
           challengeId: currentChallenge._id,

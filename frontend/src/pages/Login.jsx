@@ -35,7 +35,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:4000/api/teams/login', {
+      const response = await axios.post('https://supply-chain-simulation-server.vercel.app/api/teams/login', {
         team_name: teamName,
         password
       });

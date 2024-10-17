@@ -15,7 +15,7 @@ const TeamRegistration = () => {
     event.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:4000/api/teams/register', {
+      const response = await axios.post('https://supply-chain-simulation-server.vercel.app/api/teams/register', {
         team_name: teamName,
         password,
         team_members: teamMembers,

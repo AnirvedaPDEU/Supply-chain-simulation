@@ -29,7 +29,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/leaderboard');
+        const response = await axios.get('https://supply-chain-simulation-server.vercel.app/api/leaderboard');
         setLeaderboard(response.data);
       } catch (error) {
         console.error('Error fetching leaderboard:', error);

@@ -34,7 +34,7 @@ const TeamDashboard = () => {
   useEffect(() => {
     const fetchTeamDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/teams/${authData.teamId}`, {
+        const response = await axios.get(`https://supply-chain-simulation-server.vercel.app/api/teams/${authData.teamId}`, {
           headers: {
             Authorization: `Bearer ${authData.token}`,
           },
