@@ -1,3 +1,4 @@
+require('dotenv').config()
 const TeamSchema = require('../models/teams.model');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
