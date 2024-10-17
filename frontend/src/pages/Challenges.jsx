@@ -189,7 +189,7 @@ const Challenges = () => {
                 <p>Your submission has been recorded.</p>
                 <p>Points Awarded: {pointsAwarded}</p>
                 <p>Feedback: {feedback}</p>
-                <p>Time Taken: {timeTaken} seconds</p>
+                <p>Time Taken: {formatTime(timeTaken)} seconds</p>
               </div>
             )}
           </div>
