@@ -40,10 +40,20 @@ const Home = () => {
       <h2 className="main-heading">Game Guidelines</h2>
       <ul className="guidelines">
         <li>Each team must register with a unique name.</li>
-        <li>Teams can have up to 5 members.</li>
         <li>Categories include Growing and Established.</li>
-        <li>Participate in challenges to earn points.</li>
+        <li> Ensure a reliable internet connection, as Anirveda will not be responsible for any connectivity issues during the simulation.</li>
+        <li> Once the simulation starts, please do not refresh the page or navigate away, as this will reset the timer.</li>
+        <li> Refrain from using any online AI tools or switching tabs during the simulation.</li>
         <li>The leaderboard will be updated after each challenge.</li>
+        <li> Choose a simple password for ease of access; we will not have access to recover it if forgotten.</li>
+        <li> Each question will be displayed for 8 minutes:
+        <ul>
+            <li>Hosts will explain the question for 2 minutes.</li>
+            <li>Teams will have 6 minutes to discuss and formulate their answers.</li>
+        </ul>
+        </li>
+        <li> Consider your solutions based on your assigned category: either <em>Growing</em> or <em>Established</em>.</li>
+        <li> In the event of any disputes regarding the questions, the decisions made by Anirveda will be deemed final.</li>
       </ul>
 
       {/* Render multiple floating currency elements */}
