@@ -11,9 +11,15 @@ const leaderBoardRouter = require('./routes/leaderboard.routes');
 
 const app = express();
 
+const corsOptions = {
+    origin:['https://supply-chain-simulation.vercel.app'],
+    methods:["POST","GET","PUT","PATCH","DELETE"],
+    credentials: true,
+}
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(helmet());
 app.use(morgan("dev"));
 
